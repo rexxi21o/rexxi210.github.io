@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Surat Maaf Untuk Widi Aulia Damayanti</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #e8d4c1;
+      color: #3b2a1e;
+      padding: 40px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .shape {
+      position: absolute;
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+    .heart {
+      width: 38px; height: 38px;
+      fill: #5f3400;
+    }
+    .star {
+      width: 32px; height: 32px;
+      fill: #ffd700;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1) rotate(0deg);
+        opacity: 0.7;
+      }
+      80% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    /* Surat dan konten lain tetap */
+    .surat {
+      background: #f5e1d0;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(92, 58, 25, 0.18);
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 36px;
+      border: 2px solid #c2a68d;
+    }
+    h1 {
+      color: #7a5b3a;
+      text-align: center;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 19px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .pilihan {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .opsi {
+      background: #d1b19a;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(92, 58, 25, 0.10);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid #c2a68d;
+    }
+    .opsi:hover {
+      background: #c2a68d;
+    }
+    .pesan {
+      margin-top: 22px;
+      padding: 16px;
+      background: #f0d6c1;
+      border-radius: 7px;
+      border: 1px solid #c2a68d;
+      color: #3b2a1e;
+      font-size: 18px;
+      display: none;
+    }
+    .soundtrack {
+      margin: 38px auto 12px auto;
+      text-align: center;
+    }
+    .tanda {
+      text-align: right;
+      margin-top: 38px;
+      font-style: italic;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay shapes -->
+  <div class="overlay" id="overlay"></div>
+  <div class="surat">
+    <h1>Hai
+      Widi Aulia Damayanti</h1>
+    <p>
+       Thank you for taking the time to visit this website I've programmed.
+     I am truly sorry for all the pain, sadness, and disappointment I've caused you, and I'm also sorry for failing to be what you wanted me to be.
+     I've disappointed you, angered you, and made you hate me so many times. You're probably tired and sick of forgiving me over and over again.
+    </p>
+    <p>
+      I am so grateful to know someone like you, a kind and patient person. I don't want to lose all that because of my mistakes.
+     If I may come to you again, please accept my forgiveness. And if what you want is for me to distance myself and become a stranger, I will distance myself completely.
+     Whatever your choice, I truly respect and accept your decision wholeheartedly.
+    </p>
+    <div class="pilihan">
+      <div class="opsi" onclick="showMessage('maaf')">
+         Terima Maaf
+      </div>
+      <div class="opsi" onclick="showMessage('tidak')">
+         Tidak
+      </div>
+    </div>
+    <div class="pesan" id="pesan-maaf">
+      Terima kasih kau sudah menerima maafku, tolong jelaskan kepadaku di chat, soalnya aku tidak mendapatkan notifikasi atas pilihanmu.
+    </div>
+    <div class="pesan" id="pesan-tidak">
+      Yaa tak apa aku tau aku buruk untukmu, kau pantas dapat yang lebih baik :D, tapi tolong beri tahu aku dengan memberi emoji jempol pada chat terakhirku biar aku tau jika kau memilih ini.
+    </div>
+  <div class="soundtrack"></div >
+    <audio src="nadif.mp3" controls autoplay loop></audio>
+  </div>
+  <script>
+    function showMessage(pilihan) {
+      document.getElementById("pesan-maaf").style.display = pilihan === 'maaf' ? "block" : "none";
+      document.getElementById("pesan-tidak").style.display = pilihan === 'tidak' ? "block" : "none";
+    }
+
+    // Overlay shapes generator
+    const overlay = document.getElementById('overlay');
+    const shapes = [
+      // SVG Heart
+      `<svg class="shape heart" viewBox="0 0 32 32"><path d="M23.6,4.6c-2.6,0-4.9,1.6-5.6,4c-0.7-2.4-3-4-5.6-4C7.1,4.6,5,6.7,5,9.3c0,6.6,11,13.1,11,13.1s11-6.5,11-13.1C27,6.7,24.9,4.6,23.6,4.6z"/></svg>`,
+      // SVG Star
+      `<svg class="shape star" viewBox="0 0 32 32"><polygon points="16,2 20,12 31,12 22,19 25,30 16,23 7,30 10,19 1,12 12,12"/></svg>`
+    ];
+    function randomBetween(a, b) {
+      return Math.random() * (b - a) + a;
+    }
+    function spawnShape() {
+      const type = Math.random() > 0.5 ? 0 : 1;
+      const el = document.createElement('div');
+      el.innerHTML = shapes[type];
+      const svg = el.firstChild;
+      svg.style.left = randomBetween(0, window.innerWidth - 40) + 'px';
+      svg.style.top = '0px';
+      svg.style.animationDuration = randomBetween(6, 12) + 's';
+      svg.style.opacity = randomBetween(0.5, 0.9);
+      overlay.appendChild(svg);
+      setTimeout(() => {
+        overlay.removeChild(svg);
+      }, 12000);
+    }
+    setInterval(spawnShape, 900);
+  </script>
+</body>
+</html>
